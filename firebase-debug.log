@@ -1,27 +1,25 @@
-[debug] [2018-11-01T13:22:42.095Z] ----------------------------------------------------------------------
-[debug] [2018-11-01T13:22:42.099Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\STD\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
-[debug] [2018-11-01T13:22:42.099Z] CLI Version:   6.0.0
-[debug] [2018-11-01T13:22:42.099Z] Platform:      win32
-[debug] [2018-11-01T13:22:42.099Z] Node Version:  v8.11.3
-[debug] [2018-11-01T13:22:42.099Z] Time:          Thu Nov 01 2018 20:22:42 GMT+0700 (SE Asia Standard Time)
-[debug] [2018-11-01T13:22:42.099Z] ----------------------------------------------------------------------
+[debug] [2018-11-01T15:10:56.569Z] ----------------------------------------------------------------------
+[debug] [2018-11-01T15:10:56.574Z] Command:       D:\nodejs\node.exe C:\Users\Admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2018-11-01T15:10:56.575Z] CLI Version:   6.0.0
+[debug] [2018-11-01T15:10:56.575Z] Platform:      win32
+[debug] [2018-11-01T15:10:56.575Z] Node Version:  v8.12.0
+[debug] [2018-11-01T15:10:56.575Z] Time:          Thu Nov 01 2018 22:10:56 GMT+0700 (SE Asia Standard Time)
+[debug] [2018-11-01T15:10:56.575Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2018-11-01T13:22:42.125Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-11-01T13:22:42.127Z] > authorizing via signed-in user
-[debug] [2018-11-01T13:22:42.127Z] [iam] checking project shopper-45945 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
-[debug] [2018-11-01T13:22:42.129Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2018-11-01T13:22:42.129Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
- <request body omitted>
-[debug] [2018-11-01T13:22:42.404Z] <<< HTTP RESPONSE 200
-[debug] [2018-11-01T13:22:42.448Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/shopper-45945:testIamPermissions  
+[debug] [2018-11-01T15:10:56.600Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-11-01T15:10:56.601Z] > authorizing via signed-in user
+[debug] [2018-11-01T15:10:56.601Z] [iam] checking project shopper-45945 for permissions ["firebase.projects.get"]
+[debug] [2018-11-01T15:10:56.606Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/shopper-45945:testIamPermissions  
 
-[debug] [2018-11-01T13:22:43.787Z] <<< HTTP RESPONSE 200
-[debug] [2018-11-01T13:22:43.788Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/shopper-45945  
+[debug] [2018-11-01T15:10:58.715Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-01T15:10:58.719Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/shopper-45945  
  
-[debug] [2018-11-01T13:22:44.181Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-01T15:11:00.073Z] <<< HTTP RESPONSE 200
 [info] 
-[info] === Deploying to 'shopper-45945'...
+[info] === Serving from 'D:\977-341\977-341\mobilequiz1-master'...
 [info] 
-[info] i  deploying hosting
-[debug] [2018-11-01T13:22:44.185Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/shopper-45945/versions  
-
+[debug] [2018-11-01T15:11:00.082Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/468522899444/clients/_:getWebAppConfig  
+ 
+[debug] [2018-11-01T15:11:00.706Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
