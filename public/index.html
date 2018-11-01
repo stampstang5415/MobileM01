@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>PSU Shopping</title>
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
@@ -20,7 +20,7 @@
   <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-firestore.js"></script>
 
   <script>
-    // Initialize Firebase
+  
     var config = {
       apiKey: "AIzaSyC0TtNk882ez1FqM54-cvnfsf29iqbFRvM",
       authDomain: "shopper-45945.firebaseapp.com",
@@ -31,17 +31,13 @@
 
     };
     firebase.initializeApp(config);
-    // Initialize Cloud Firestore through Firebase
+
     var db = firebase.firestore();
-    // Disable deprecated features
+
     db.settings({
       timestampsInSnapshots: true
     });
   </script>
-  <title>PSU Shopping</title>
-
-
-
 </head>
 
 <body>
@@ -94,7 +90,7 @@
 
         </ons-carousel-item>
       </ons-carousel>
-      <!--/////////////////////////////////////////////////////////////////////////////-->
+
       <div>
 
 
@@ -236,10 +232,10 @@
                       %>
             <ons-list-item>
                 <div class="left">
-                    <img class="list-item__thumbnail" src="<%= cart.photo %>">
+                    <img class="list-item__thumbnail" src="<%= cart.pic %>">
                 </div>
                 <div class="center">
-                    <span class="list-item__title"><%= cart.itemname %></span>
+                    <span class="list-item__title"><%= cart.title %></span>
                     <span class="list-item__subtitle" style="color: blue;"><%= cart.price %></span>
                 </div>
                 <div class="right">
@@ -291,28 +287,27 @@
     <ons-page>
       <ons-toolbar>
         <div class="left">
-          <ons-back-button>Page 1</ons-back-button>
+          <ons-back-button>Back</ons-back-button>
         </div>
-        <div class="center"></div>
+        <div class="center">Product Detail</div>
       </ons-toolbar>
       <div id="detail"></div>
       <script id="detail_template" type="text/template"> 
         <ons-card>
-         
+          
          <% detail.forEach(function(data){   
           var data = data.data(); %>
+          <img class="" src="<%= data.pic %>" width="99%"height="40%">
           <div class="title">
-            <%= data.price%>
+             <%= data.title %>
           </div>
           <div class="content">
             <div>
-              <%= data.title %>
+            ฿<%= data.price%>
             </div>
             <ons-list>
-              <ons-list-header>Bindings</ons-list-header>
-              <ons-list-item>Vue</ons-list-item>
-              <ons-list-item>Angular</ons-list-item>
-              <ons-list-item>React</ons-list-item>
+              <ons-list-item>Detail :</ons-list-item>
+              <%= data.detail%>
             </ons-list>
           </div>
           <ons-button onclick="addtocart('<%= data.pid %>')">ADD TO CART</ons-button>
@@ -368,7 +363,7 @@
       } else if (event.index == 3) {
         var title = localStorage.getItem('title');
         console.log('Cart click');
-        // test(title)
+
       }
       localStorage.clear();
     });
@@ -400,7 +395,7 @@
           });
           $('#icon').html(html);
         } else {
-          // doc.data() will be undefined in this case
+
           console.log("No such document!");
         }
       }).catch(function (error) {
@@ -415,28 +410,27 @@
         if (doc.exists) {
           console.log("Document data:", doc.data());
           var data = doc.data();
-          // $('#photo').html(data.cart[0].photo);
-          // $('#price').html(data.cart[0].price); 
+
           var pic_template = $('#pic_template').html();
           var html = ejs.render(pic_template, { cart: data.cart });
           $('#pic').html(html);
         } else {
-          // doc.data() will be undefined in this case
+
           console.log("No such document!");
         }
       }).catch(function (error) {
         console.log("Error getting document:", error);
       });
-      // $.getJSON('cart.json', function (data) {
-      //     console.log(data);
-      // })
+
+
+
     }
     function getproductData(name) {
       console.log(name);
       if (name == null) {
         db.collection("PRODUCTS").get()
           .then(function (querySnapshot) {
-            // doc.data() is never undefined for query doc snapshots
+
             var product_template = $('#product_template').html();
             console.log(querySnapshot.docs);
             var html = ejs.render(product_template, { product: querySnapshot.docs });
@@ -453,7 +447,7 @@
               var html = "ไม่มีสินค้าที่คุณเลือก"
               db.collection("PRODUCTS").get()
                 .then(function (querySnapshot) {
-                  // doc.data() is never undefined for query doc snapshots
+
                   var product_template = $('#product_template').html();
                   console.log(querySnapshot.docs);
                   html += ejs.render(product_template, { product: querySnapshot.docs });
@@ -465,7 +459,7 @@
             } else {
               db.collection("PRODUCTS").where("category", "==", name).get()
                 .then(function (querySnapshot) {
-                  // doc.data() is never undefined for query doc snapshots
+
                   console.log(querySnapshot.docs);
                   var product_template = $('#product_template').html();
                   var html = ejs.render(product_template, { product: querySnapshot.docs });
@@ -475,11 +469,7 @@
                   console.log("Error getting documents: ", error);
                 });
             }
-            // doc.data() is never undefined for query doc snapshots
-            // var product_template = $('#product_template').html();
-            // console.log(querySnapshot.docs);
-            // var html = ejs.render(product_template, { product: querySnapshot.docs });
-            // $('#product').html(html);
+            
           })
       }
     }
@@ -487,21 +477,19 @@
       console.log(name)
       document.getElementById('tabbar').setActiveTab(2);
       localStorage.setItem('name', name);
-      // var name1 = localStorage.getItem('name');
-      //  getproductData(name1)
+ 
     }
     function detail(pid) {
       localStorage.setItem('id', pid);
       myNavigator.pushPage('tab4.html')
       showdetail()
-      // var name1 = localStorage.getItem('name');
-      //  getproductData(name1)
+
     }
     function showdetail() {
       var id = localStorage.getItem('id');
       db.collection("PRODUCTS").where("pid", "==", id).get()
         .then(function (querySnapshot) {
-          // doc.data() is never undefined for query doc snapshots
+        
           console.log(querySnapshot.docs);
           var detail_template = $('#detail_template').html();
           var html = ejs.render(detail_template, { detail: querySnapshot.docs });
@@ -527,7 +515,7 @@
       console.log('tong', item);
       test(item);
       document.getElementById('tabbar').setActiveTab(2);
-      // localStorage.setItem('title', item);
+
     }
     const data = []
     function tatol() {
@@ -540,7 +528,7 @@
           });
 
         })
-      // const fruits = data[1];
+
     }
     var dataCart = [];
     function addtocart(add2cart) {
@@ -553,29 +541,15 @@
     }
     function test(title) {
       console.log("888", title);
-      // for(var i =0;i<tests.length;i++){
+
 
 
       console.log('tset', title);
-      // doc.data() is never undefined for query doc snapshots
+
 
       var product_template = $('#product_template').html();
       var html = ejs.render(product_template, { product: title });
       $('#product').html(html);
-
-      // console.log(tests)
-      // db.collection("PRODUCTS").where("title", "==",tests).get()
-      //       .then(function (querySnapshot) {
-      //         // doc.data() is never undefined for query doc snapshots
-      //         console.log(querySnapshot.docs);
-      //         var test_template = $('#test_template').html();
-      //         var html = ejs.render(test_template, { test: querySnapshot.docs });
-      //         $('#test').html(html);
-      //       })
-      //       .catch(function (error) {
-      //         console.log("Error getting documents: ", error);
-      //       });
-      // }}
     }
     var dataCart = [];
     function addtocart(add2cart) {
@@ -586,7 +560,7 @@
       dataCart.push(retrievedData);
       alert(dataCart);
     }
-    //????????? array ??????????????? firebase ?????????????????? template
+
     function getData2cart() {
 
       var Delete = []
